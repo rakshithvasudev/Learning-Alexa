@@ -32,6 +32,10 @@ function myForEach(arr,callback){
   }
 }
 
+// myForEach(myStuff, function(idx,element){
+//     console.log(idx + " element is " + element);
+// });
+
 myForEach(myStuff, function(idx,element) {
-    console.log(idx + " element is " + element);
+  console.log(idx + " element multipled by 2 is : "+ element * 2);
 });
