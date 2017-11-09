@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 exports.handler = function(event,context){
 
@@ -34,7 +34,10 @@ exports.handler = function(event,context){
 
 }
 
-
+/**
+ * Returns the wish matching appropriate 
+ * times in relation to PST time setup.
+ */
 function getWish(){
 	let currentHour = getCurrentHour();
 	if(currentHour<12){
@@ -46,7 +49,9 @@ function getWish(){
 	}
 }
 
-
+/**
+ * Returns the current hour matching PST
+ */
 function getCurrentHour(){
 	let myDate = new Date();
 	let hours = myDate.getUTCHours()-8;
@@ -56,7 +61,11 @@ function getCurrentHour(){
 	return hours;
 }
 
-
+/**
+ * Builds the response object back, to match the required
+ * format of alexa. 
+ * @param {*} options 
+ */
 function buildResponse(options){
  var response = {
 	version: "1.0",
