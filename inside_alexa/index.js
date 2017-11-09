@@ -1,3 +1,5 @@
+'use strict';
+
 exports.handler = function(event,context){
 
 	var request = event.request;
@@ -5,24 +7,39 @@ exports.handler = function(event,context){
 	if(request.type === "LaunchRequest"){
 		
 		context.succeed(buildResponse({
-			speechText:"Hello Welcome to greeting skill, I can greet you, just say the name.",
-			repromptText:" Who do you want to greet? You can say for example, Greet Rakshith",
+			speechText:"Hello! Welcome to greeting skill, I can greet you, just say the name.",
+			repromptText:"You can say for example, Greet Rakshith",
 			endSession:false
 		}));
 
 	}else if(request.type === "IntentRequest"){
+	
+	// only if the intent name is HelloIntent, then buildResponse
+	if(request.intent.name === "HelloIntent"){
+		let firstName = request.intent.slots.FirstName.value;
+		
 		context.succeed(buildResponse({
-			speechText:"Hello",
-			repromptText:" Do you want to greet someone else as well?",
+			speechText:"Hello" + firstName + getWish() +" welcome to Rakshith's room." ,
 			endSession:false
 		}));
+	// fail if intent name isn't "HelloIntent" 	
+	  }else{
+		  context.fail("Unknown Intent");
+	  }		
 	}else if(request.type === "SessionEndedRequest"){
 
 	}else{
-		context.fail("Unknown intent type");
+		context.fail("Unknown request type");
 	}
 
 }
+
+
+function getWish(){
+	 let myDate = new Date();
+	 
+}
+
 
 
 function buildResponse(options){
