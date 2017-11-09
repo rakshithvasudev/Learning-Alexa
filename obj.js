@@ -14,7 +14,6 @@ age: 22
 };
 
 function Person(name,title,state,age){
-
     this.name = name;
     this.title = title;
     this.state = state;
@@ -24,6 +23,8 @@ function Person(name,title,state,age){
   }
 }
 
+
+exports.Person = Person;
 
 var rocky = new Person("Rocky", "Mr. ", " California", 23);
 console.log(rocky.getPerson());
