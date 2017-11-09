@@ -13,15 +13,13 @@ state: "California",
 age: 22
 };
 
-class Person{
-  constructor(name,title,state,age) {
+function Person(name,title,state,age){
+
     this.name = name;
     this.title = title;
     this.state = state;
     this.age = age;
-  }
-
-  function getPerson() {
+    this.getPerson =  function() {
     return title + name + state;
   }
 }
