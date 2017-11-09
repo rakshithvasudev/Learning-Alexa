@@ -2,8 +2,10 @@
 
 exports.handler = function(event,context){
 
+try{
+
 	var request = event.request;
-	
+
 	if(request.type === "LaunchRequest"){
 		
 		context.succeed(buildResponse({
@@ -17,20 +19,25 @@ exports.handler = function(event,context){
 	// only if the intent name is HelloIntent, then buildResponse
 	if(request.intent.name === "HelloIntent"){
 		let firstName = request.intent.slots.FirstName.value;
-		
+	
 		context.succeed(buildResponse({
 			speechText:"Hello" + firstName + getWish() +" welcome to Rakshith's room." ,
-			endSession:false
+			endSession:true
 		}));
+	
 	// fail if intent name isn't "HelloIntent" 	
 	  }else{
 		  context.fail("Unknown Intent");
 	  }		
+	
 	}else if(request.type === "SessionEndedRequest"){
 
 	}else{
 		context.fail("Unknown request type");
 	}
+}catch(e){
+	context.fail("Exception: " +e);
+}
 
 }
 
