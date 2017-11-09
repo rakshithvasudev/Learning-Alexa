@@ -19,7 +19,7 @@ function Person(name,title,state,age){
     this.state = state;
     this.age = age;
     this.getPerson =  function() {
-    return title + name + state;
+    return title + name + state + " aged " + age;
   }
 }
 
