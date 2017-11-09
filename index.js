@@ -15,4 +15,9 @@ function callHi(func,name){
   func(name);
 }
 
-callHi(sayHi,"Ravi")
+callHi(sayHi,"Ravi");
+
+
+callHi(function(name){
+  console.log("From Tell truth: "+ name);
+},"Jason");
