@@ -27,13 +27,13 @@ try{
 	
 	// fail if intent name isn't "HelloIntent" 	
 	  }else{
-		  context.fail("Unknown Intent");
+		  throw "Unknown Intent";
 	  }		
 	
 	}else if(request.type === "SessionEndedRequest"){
 
 	}else{
-		context.fail("Unknown request type");
+		throw "Unknown request type";
 	}
 }catch(e){
 	context.fail("Exception: " +e);
