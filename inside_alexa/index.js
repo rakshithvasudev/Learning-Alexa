@@ -36,10 +36,25 @@ exports.handler = function(event,context){
 
 
 function getWish(){
-	 let myDate = new Date();
-	 
+	let currentHour = getCurrentHour();
+	if(currentHour<12){
+		return "Good Morning";
+	}else if(currentHour>=12 && currentHour < 18){
+		return "Good Afternoon";
+	} else{
+		return "Good Evening";
+	}
 }
 
+
+function getCurrentHour(){
+	let myDate = new Date();
+	let hours = myDate.getUTCHours()-8;
+	if(hours<0){
+		hours+=24;
+	}
+	return hours;
+}
 
 
 function buildResponse(options){
