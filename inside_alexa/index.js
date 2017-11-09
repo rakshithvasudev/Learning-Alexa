@@ -21,7 +21,7 @@ try{
 		let firstName = request.intent.slots.FirstName.value;
 	
 		context.succeed(buildResponse({
-			speechText:"Hello" + firstName + getWish() +" welcome to Rakshith's room." ,
+			speechText:"Hello " + firstName+ ". " + getWish() +" ! welcome to Rakshith's room." ,
 			endSession:true
 		}));
 	
@@ -39,7 +39,7 @@ try{
 	context.fail("Exception: " +e);
 }
 
-}
+};
 
 /**
  * Returns the wish matching appropriate 
