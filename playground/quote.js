@@ -29,6 +29,4 @@ console.log(getQuote(function(data,err){
         console.log(data);
     else
         console.log(err);
-    
-
 }));
