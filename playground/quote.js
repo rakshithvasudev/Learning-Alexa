@@ -1,7 +1,7 @@
 var http = require('http');
 
 
-function getQuote(callback){
+function getQuote(){
   var url = "http://api.forismatic.com/api/1.0/json?method=getQuote&lang=en&format=json";
   var req = http.get(url,function(res){
      var body = "";
@@ -13,15 +13,14 @@ function getQuote(callback){
      res.on("end",function(){
         body = body.replace(/\\/g,''); 
         var quote = JSON.parse(body);
-        callback(quote.quoteText);
+        console.log(quote.quoteText);
      });
 
     });  
 
   req.on("error",function(err){
-    callback('',err);
+    console.log('',err);
   });
 
 }
 
-console.log(getQuote());
