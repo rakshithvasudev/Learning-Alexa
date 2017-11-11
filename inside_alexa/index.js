@@ -1,4 +1,5 @@
 "use strict";
+var http = require('http');
 
 exports.handler = function(event,context){
 
@@ -19,18 +20,20 @@ try{
 	// only if the intent name is HelloIntent, then buildResponse
 	if(request.intent.name === "HelloIntent"){
 		let firstName = request.intent.slots.FirstName.value;
-		let quote = getQuote(function(data,err){
-			if(err) 
+		let speechText = "Hello " + firstName+ ". "
+		speechText +=  getWish() +" ! Welcome to Rakshith's room. " + firstName + ", Here's a quote for you: " 
+		getQuote(function(quote,err){
+			if(err){
 				context.fail(err);
-			return data;	
+			}else{
+				speechText += quote;
+				context.succeed(buildResponse({		
+					speechText:speechText,
+					endSession:true
+				}));
+			}
 		});
-		context.succeed(buildResponse({
-			
-			speechText:"Hello " + firstName+ ". " + getWish() +" ! welcome to Rakshith's room."
-			+ firstName + ", Here's a quote for you: " + quote ,
-			endSession:true
-		}));
-	
+		
 	// fail if intent name isn't "HelloIntent" 	
 	  }else{
 		  throw "Unknown Intent";
@@ -105,7 +108,7 @@ function buildResponse(options){
 }
 
 /**
- * 
+ * Get's the quote from api
  * @param {*} callback 
  */
 function getQuote(callback){
@@ -120,12 +123,13 @@ function getQuote(callback){
 	   res.on("end",function(){
 		  body = body.replace(/\\/g,''); 
 		  var quote = JSON.parse(body);
-		  callback(quote.quoteText);
+		  callback (quote.quoteText);
 	   });
   
 	  });  
   
 	req.on("error",function(err){
-	  callback('',err);
+		callback ('',err);
 	});
   }
+

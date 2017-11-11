@@ -24,9 +24,9 @@ function getQuote(callback){
 
 }
 
-console.log(getQuote(function(data,err){
+getQuote(function(data,err){
     if(data) 
         console.log(data);
     else
         console.log(err);
-}));
+});
