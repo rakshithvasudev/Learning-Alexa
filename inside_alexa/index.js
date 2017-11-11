@@ -20,8 +20,8 @@ try{
 	// only if the intent name is HelloIntent, then buildResponse
 	if(request.intent.name === "HelloIntent"){
 		let firstName = request.intent.slots.FirstName.value;
-		let speechText = "Hello " + firstName+ ". "
-		speechText +=  getWish() +" ! Welcome to Rakshith's room. " + firstName + ", Here's a quote for you: " 
+		let speechText = "Hello " + firstName+ ". ";
+		speechText +=  getWish() +" ! Welcome to Rakshith's room. " + firstName + ", Here's a quote for you: " ;
 		getQuote(function(quote,err){
 			if(err){
 				context.fail(err);
