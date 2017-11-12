@@ -108,7 +108,7 @@ function buildResponse(options){
 }
 
 /**
- * Get's the quote from api
+ * Get's the quote from api from the link.
  * @param {*} callback 
  */
 function getQuote(callback){
